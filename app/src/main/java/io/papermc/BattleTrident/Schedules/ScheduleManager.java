@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import io.papermc.BattleTrident.BattleTrident;
-import io.papermc.BattleTrident.Games.GameManager;
 
 
 
@@ -18,7 +17,7 @@ public final class ScheduleManager {
 
 	public final void register() {
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this.plugin, () -> {
-			if(GameManager.gameState == GameManager.GameState.PLAYING) {
+			if(GameManager.getGameState() == GameManager.GameState.PLAYING) {
 				Bukkit.getOnlinePlayers().forEach(player -> {
 					player.getInventory().setItem(0, new ItemStack(Material.TRIDENT, 1));
 				});

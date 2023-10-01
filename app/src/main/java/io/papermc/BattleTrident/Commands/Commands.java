@@ -18,10 +18,10 @@ public final class Commands implements CommandExecutor {
 
 		switch(command.getName()) {
 			case "gstart":
-				GameManager.gameState = GameManager.GameState.PLAYING;
+				GameManager.startGame();
 				return true;
 			case "gstop":
-				GameManager.gameState = GameManager.GameState.ENDED;
+				GameManager.stopGame();
 				return true;
 			default:
 				return false;
