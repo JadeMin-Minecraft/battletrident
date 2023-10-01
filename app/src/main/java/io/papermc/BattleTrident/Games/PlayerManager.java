@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 
 
 
-public class PlayerManager {
-	public static final List<Player> players = List.of();
+public final class PlayerManager {
+	public final List<Player> players = List.of();
 
 	public PlayerManager() {
 		Bukkit.getOnlinePlayers().forEach(player -> {
