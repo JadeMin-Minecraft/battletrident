@@ -13,9 +13,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import io.papermc.BattleTrident.GUIs.CinderellaGUI;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
+
+import io.papermc.BattleTrident.GUIs.CinderellaGUI;
 
 
 
