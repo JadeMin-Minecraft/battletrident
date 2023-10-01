@@ -1,0 +1,7 @@
+/.gradle
+/server
+
+/app/bin
+/app/build
+
+/start.cmd
