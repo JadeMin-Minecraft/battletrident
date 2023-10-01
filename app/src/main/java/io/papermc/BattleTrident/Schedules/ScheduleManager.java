@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import io.papermc.BattleTrident.BattleTrident;
+import io.papermc.BattleTrident.Games.GameManager;
 
 
 

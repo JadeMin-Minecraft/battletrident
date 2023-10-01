@@ -1,6 +1,6 @@
 package io.papermc.BattleTrident.Games;
 
-import java.util.List;
+//import java.util.List;
 
 
 
@@ -14,8 +14,8 @@ public final class GameManager {
 		PLAYING,
 		ENDED,
 	};
-	private static final List<Listener> startListeners = List.of();
-	private static final List<Listener> endListeners = List.of();
+	/*private static final List<Listener> startListeners = List.of();
+	private static final List<Listener> endListeners = List.of();*/
 	private static GameState gameState = GameState.ENDED;
 
 	public static final void startGame() {
@@ -28,7 +28,7 @@ public final class GameManager {
 		return gameState;
 	}
 
-	public final void subscribe(final GameState type, final Listener listener) {
+	/*public final void subscribe(final GameState type, final Listener listener) {
 		switch(type) {
 			case PLAYING:
 				startListeners.add(listener);
@@ -63,5 +63,5 @@ public final class GameManager {
 			default:
 				throw new IllegalArgumentException("Invalid event type: " + type);
 		}
-	}
+	}*/
 }
