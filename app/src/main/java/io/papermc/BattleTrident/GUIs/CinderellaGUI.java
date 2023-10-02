@@ -12,16 +12,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import io.papermc.BattleTrident.Games.PlayerManager;
 import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.ChatColor;
 
 
 
 public final class CinderellaGUI implements InventoryHolder {
+	public final int INVENTORY_SIZE = 9;
 	private final Inventory inventory;
-	public final int INVENTORY_SIZE = 54;
 
-	public CinderellaGUI() {
+	public CinderellaGUI(final Player opener) {
 		this.inventory = Bukkit.createInventory(
 			this,
 			this.INVENTORY_SIZE,
@@ -37,9 +38,9 @@ public final class CinderellaGUI implements InventoryHolder {
 		for(int index=0; index<this.INVENTORY_SIZE; index++) {
 			final ItemStack item;
 			
-			if(index < Bukkit.getOnlinePlayers().size()) {
+			if(index < PlayerManager.players.size()) {
 				item = new ItemStack(Material.PLAYER_HEAD, 1);
-				final Player player = new ArrayList<Player>(Bukkit.getOnlinePlayers()).get(index);
+				final Player player = PlayerManager.players.get(index);
 				final SkullMeta meta = (SkullMeta)item.getItemMeta();
 
 				meta.displayName(Component.text(player.getName()));

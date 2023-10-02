@@ -1,11 +1,6 @@
 package io.papermc.BattleTrident.Commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.*;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import io.papermc.BattleTrident.Games.GameManager;
 

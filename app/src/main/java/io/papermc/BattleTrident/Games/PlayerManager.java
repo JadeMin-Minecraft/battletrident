@@ -1,5 +1,6 @@
 package io.papermc.BattleTrident.Games;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -8,11 +9,9 @@ import org.bukkit.entity.Player;
 
 
 public final class PlayerManager {
-	public final List<Player> players = List.of();
+	public static List<Player> players = null;
 
-	public PlayerManager() {
-		Bukkit.getOnlinePlayers().forEach(player -> {
-			players.add(player);
-		});
+	public static final void update() {
+		players = new ArrayList<Player>(Bukkit.getOnlinePlayers());
 	}
 }

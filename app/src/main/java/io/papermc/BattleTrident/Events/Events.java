@@ -1,9 +1,5 @@
 package io.papermc.BattleTrident.Events;
 
-import java.time.Duration;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalUnit;
-
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -11,10 +7,13 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Trident;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
@@ -22,11 +21,41 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
 import io.papermc.BattleTrident.GUIs.CinderellaGUI;
+import io.papermc.BattleTrident.Games.PlayerManager;
 
 
 
 public final class Events implements Listener {
-	private final float explosionSize = 2.0f;
+	private final float explosionSize = 10.0f;
+
+	@EventHandler
+	public final void onPlayerJoin(final PlayerJoinEvent event) {
+		PlayerManager.update();
+	}
+
+	@EventHandler
+	public final void onPlayerQuit(final PlayerQuitEvent event) {
+		PlayerManager.update();
+	}
+
+	@EventHandler
+	public final void onEntityDamage(final EntityDamageEvent event) {
+		if(event.getEntityType() == EntityType.PLAYER) {
+			final Player player = (Player)event.getEntity();
+			final double damagedHealth = player.getHealth() - event.getFinalDamage();
+
+			if(damagedHealth <= 8) {
+				player.addPotionEffect(
+					new PotionEffect(
+						PotionEffectType.SPEED,
+						40,
+						1,
+						true
+					)
+				);
+			}
+		}
+	}
 
 	@EventHandler
 	public final void onTridentThrow(final ProjectileLaunchEvent event) {
@@ -40,7 +69,7 @@ public final class Events implements Listener {
 			final Player player = (Player)shooter;
 			final Trident trident = (Trident)projectile;
 
-			player.setCooldown(trident.getItemStack().getType(), 40);
+			player.setCooldown(trident.getItemStack().getType(), 20);
 		}
 	}
 
@@ -76,8 +105,8 @@ public final class Events implements Listener {
 			) {
 				event.setCancelled(true);
 
-				player.setCooldown(item.getType(), 1200);
-				player.openInventory(new CinderellaGUI().getInventory());
+				player.setCooldown(item.getType(), 100);
+				player.openInventory(new CinderellaGUI(player).getInventory());
 			}
 		}
 	}
