@@ -26,8 +26,8 @@ import org.bukkit.projectiles.ProjectileSource;
 
 import net.kyori.adventure.text.Component;
 
-import io.papermc.BattleTrident.GUIs.CinderellaGUI;
 import io.papermc.BattleTrident.Games.PlayerManager;
+import io.papermc.BattleTrident.GUIs.CinderellaGUI;
 
 
 
