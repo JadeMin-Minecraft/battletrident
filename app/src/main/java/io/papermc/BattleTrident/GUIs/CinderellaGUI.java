@@ -1,6 +1,5 @@
 package io.papermc.BattleTrident.GUIs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -21,8 +20,13 @@ import net.md_5.bungee.api.ChatColor;
 public final class CinderellaGUI implements InventoryHolder {
 	public final int INVENTORY_SIZE = 9;
 	private final Inventory inventory;
+	private final List<Player> players;
 
 	public CinderellaGUI(final Player opener) {
+		this.players = PlayerManager.players.stream().filter(player -> {
+			return player.getUniqueId() != opener.getUniqueId();
+		}).toList();
+
 		this.inventory = Bukkit.createInventory(
 			this,
 			this.INVENTORY_SIZE,
@@ -38,9 +42,9 @@ public final class CinderellaGUI implements InventoryHolder {
 		for(int index=0; index<this.INVENTORY_SIZE; index++) {
 			final ItemStack item;
 			
-			if(index < PlayerManager.players.size()) {
+			if(index < this.players.size()) {
 				item = new ItemStack(Material.PLAYER_HEAD, 1);
-				final Player player = PlayerManager.players.get(index);
+				final Player player = this.players.get(index);
 				final SkullMeta meta = (SkullMeta)item.getItemMeta();
 
 				meta.displayName(Component.text(player.getName()));
