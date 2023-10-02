@@ -43,11 +43,8 @@ public final class Events implements Listener {
 		
 		if(item.getType() == Material.ENDER_PEARL) {
 			event.setCancelled(true);
+			player.setCooldown(item.getType(), 1200);
 			player.openInventory(new CinderellaGUI().getInventory());
-
-			if(player.getGameMode() != GameMode.CREATIVE) {
-				item.setAmount(item.getAmount() - 1);
-			}
 		}
 	}
 
