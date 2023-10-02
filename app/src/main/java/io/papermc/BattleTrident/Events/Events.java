@@ -1,10 +1,10 @@
 package io.papermc.BattleTrident.Events;
 
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Trident;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -12,6 +12,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.projectiles.ProjectileSource;
 
 import io.papermc.BattleTrident.GUIs.CinderellaGUI;
 
@@ -23,16 +24,25 @@ public final class Events implements Listener {
 	@EventHandler
 	public final void onTridentHit(final ProjectileHitEvent event) {
 		final Projectile projectile = event.getEntity();
-		
-		if(projectile.getType() == EntityType.TRIDENT) {
-			projectile.getWorld().strikeLightning(projectile.getLocation());
-			projectile.getWorld().createExplosion(
-				projectile.getLocation(),
+		final ProjectileSource shooter = projectile.getShooter();
+
+		if(
+			projectile.getType() == EntityType.TRIDENT &&
+			projectile.getShooter() instanceof Player
+		) {
+			final Trident trident = (Trident)projectile;
+			final Player player = (Player)shooter;
+
+			player.setCooldown(trident.getItemStack().getType(), 20);
+
+			trident.getWorld().strikeLightning(trident.getLocation());
+			trident.getWorld().createExplosion(
+				trident.getLocation(),
 				this.explosionSize,
 				false,
 				false
 			);
-			projectile.remove();
+			trident.remove();
 		}
 	}
 
@@ -40,23 +50,31 @@ public final class Events implements Listener {
 	public final void onEnderPearl(final PlayerInteractEvent event) {
 		final Player player = event.getPlayer();
 		final ItemStack item = event.getItem();
-		
-		if(item.getType() == Material.ENDER_PEARL) {
-			event.setCancelled(true);
-			player.setCooldown(item.getType(), 1200);
-			player.openInventory(new CinderellaGUI().getInventory());
+
+		if(item != null) {
+			if(
+				item.getType() == Material.ENDER_PEARL &&
+				!player.hasCooldown(item.getType())
+			) {
+				event.setCancelled(true);
+
+				player.setCooldown(item.getType(), 1200);
+				player.openInventory(new CinderellaGUI().getInventory());
+			}
 		}
 	}
 
 	@EventHandler
 	public final void onCinderellaClick(final InventoryClickEvent event) {
-		if(event.getCurrentItem() != null) {
+		final ItemStack clickedItem = event.getCurrentItem();
+
+		if(clickedItem != null) {
 			if(event.getInventory().getHolder() instanceof CinderellaGUI) {
 				event.setCancelled(true);
 				
-				if(event.getCurrentItem().getType() == Material.PLAYER_HEAD) {
+				if(clickedItem.getType() == Material.PLAYER_HEAD) {
 					final Player clicker = (Player)event.getWhoClicked();
-					final SkullMeta clickedItemMeta = (SkullMeta)event.getCurrentItem().getItemMeta();
+					final SkullMeta clickedItemMeta = (SkullMeta)clickedItem.getItemMeta();
 					final Player targetPlayer = (Player)clickedItemMeta.getOwningPlayer();
 
 					clicker.closeInventory();
