@@ -25,7 +25,7 @@ public final class CinderellaGUI implements InventoryHolder {
 		this.inventory = Bukkit.createInventory(
 			this,
 			this.INVENTORY_SIZE,
-			Component.text("Bibidi Babidi Boom!")
+			Component.text("비비디 바비디 붐")
 		);
 		this.inventory.setMaxStackSize(1);
 	}
@@ -41,6 +41,7 @@ public final class CinderellaGUI implements InventoryHolder {
 				item = new ItemStack(Material.PLAYER_HEAD, 1);
 				final Player player = new ArrayList<Player>(Bukkit.getOnlinePlayers()).get(index);
 				final SkullMeta meta = (SkullMeta)item.getItemMeta();
+
 				meta.displayName(Component.text(player.getName()));
 				meta.lore(
 					List.of(
@@ -58,6 +59,7 @@ public final class CinderellaGUI implements InventoryHolder {
 			} else {
 				item = new ItemStack(Material.BARRIER, 1);
 				final ItemMeta meta = item.getItemMeta();
+				
 				meta.displayName(
 					Component.text(
 						String.format(
