@@ -4,7 +4,6 @@ package io.papermc.BattleTrident.Games;
 
 
 
-
 public final class GameManager {
 	public static interface Listener {
 		public void update(final GameState state);

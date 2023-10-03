@@ -30,7 +30,7 @@ public final class CinderellaGUI implements InventoryHolder {
 		this.inventory = Bukkit.createInventory(
 			this,
 			this.INVENTORY_SIZE,
-			Component.text("비비디 바비디 붐")
+			Component.text("비비디 바비디 BOOM💥")
 		);
 		this.inventory.setMaxStackSize(1);
 	}
