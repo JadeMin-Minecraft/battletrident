@@ -33,7 +33,6 @@ public final class OnCinderella implements Listener {
 					action == Action.LEFT_CLICK_BLOCK
 				) {
 					event.setCancelled(true);
-					player.setCooldown(item.getType(), 100);
 					player.openInventory(new CinderellaGUI(player).getInventory());
 				}
 			} else {
@@ -60,6 +59,7 @@ public final class OnCinderella implements Listener {
 					final Player clickedPlayer = (Player)clickedItemMeta.getOwningPlayer();
 
 					player.closeInventory();
+					player.setCooldown(clickedItem.getType(), 100);
 					clickedPlayer.addPotionEffect(
 						new PotionEffect(
 							PotionEffectType.GLOWING,
