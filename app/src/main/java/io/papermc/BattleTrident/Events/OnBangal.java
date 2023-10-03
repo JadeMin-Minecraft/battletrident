@@ -20,7 +20,8 @@ public final class OnBangal implements Listener {
 					PotionEffectType.SPEED,
 					20,
 					1,
-					true
+					false,
+					false
 				)
 			);
 		}
