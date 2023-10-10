@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 
 public final class PlayerManager {
-	public static List<Player> players = null;
+	public static List<Player> players;
 
 	public static final void update() {
 		players = new ArrayList<Player>(Bukkit.getOnlinePlayers());

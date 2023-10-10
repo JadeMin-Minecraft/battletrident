@@ -5,17 +5,17 @@ package io.papermc.BattleTrident.Games;
 
 
 public final class GameManager {
+	/*private static final List<Listener> startListeners = List.of();
+	private static final List<Listener> endListeners = List.of();*/
+	private static GameState gameState = GameState.ENDED;
+	
 	public static interface Listener {
 		public void update(final GameState state);
 	};
-
 	public static enum GameState {
 		PLAYING,
 		ENDED,
 	};
-	/*private static final List<Listener> startListeners = List.of();
-	private static final List<Listener> endListeners = List.of();*/
-	private static GameState gameState = GameState.ENDED;
 
 	public static final void startGame() {
 		gameState = GameState.PLAYING;
