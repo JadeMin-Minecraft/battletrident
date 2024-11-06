@@ -1,7 +1,8 @@
-/.gradle
-/server
+/build/
+/run/
 
-/app/bin
-/app/build
+/.idea/
 
-/start.cmd
+/.gradle/
+/gradlew
+/gradlew.bat
