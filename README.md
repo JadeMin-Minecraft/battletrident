@@ -1,2 +1,0 @@
-# BattleTrident
-Work in progress
