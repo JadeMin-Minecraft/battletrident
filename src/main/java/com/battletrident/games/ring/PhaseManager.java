@@ -7,6 +7,7 @@ public class PhaseManager {
 		new Ring(2, 100, 40, 0.1, 30),
 		new Ring(3, 1, 60, 1, -1),
 	};
+
 	private int index = 0;
 	private final RingUpdateEvent event = new RingUpdateEvent(RINGS[index], null);
 

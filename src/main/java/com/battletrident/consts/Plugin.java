@@ -15,7 +15,7 @@ public class Plugin {
 	public static BukkitScheduler getScheduler() {
 		return getServer().getScheduler();
 	}
-	public static BukkitTask runTaskLater(Runnable r, long delay) {
-		return getScheduler().runTaskLater(plugin, r, delay);
+	public static BukkitTask runTaskLater(Runnable task, long delay) {
+		return getScheduler().runTaskLater(plugin, task, delay);
 	}
 }
