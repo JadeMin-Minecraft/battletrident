@@ -6,11 +6,11 @@ import io.papermc.paper.plugin.lifecycle.event.LifecycleEventManager;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.plugin.Plugin;
 
-import static com.battletrident.consts.Plugin.plugin;
+import static com.battletrident.Consts.Plugin;
 
 public class CommandManager {
 	public static void register() {
-		final LifecycleEventManager<Plugin> manager = plugin.getLifecycleManager();
+		final LifecycleEventManager<Plugin> manager = Plugin.getLifecycleManager();
 
 		manager.registerEventHandler(LifecycleEvents.COMMANDS, event -> {
 			final Commands commands = event.registrar();

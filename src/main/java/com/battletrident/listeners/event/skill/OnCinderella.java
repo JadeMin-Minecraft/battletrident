@@ -42,15 +42,15 @@ public class OnCinderella implements Listener {
 
 			if (player.hasCooldown(this.SKILL_ITEM)) return;
 
-			if (action.isLeftClick()) {
-				InventoryHolder holder = new CinderellaGUI(player);
+			if (action.isRightClick()) {
+				InventoryHolder holder = new CinderellaGUI();
 				player.openInventory(holder.getInventory());
 			}
 		}
 	}
 
 	@EventHandler
-	public void onCinderellaClick(InventoryClickEvent event) {
+	public void onCinderellaPick(InventoryClickEvent event) {
 		if (!GameManager.isPlaying()) return;
 
 		ItemStack clickedItem = event.getCurrentItem();

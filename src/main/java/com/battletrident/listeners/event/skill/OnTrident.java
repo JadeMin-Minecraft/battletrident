@@ -3,6 +3,7 @@ package com.battletrident.listeners.event.skill;
 import com.battletrident.games.state.GameManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -49,20 +50,22 @@ public class OnTrident implements Listener {
 
 		Projectile projectile = event.getEntity();
 		ProjectileSource shooter = projectile.getShooter();
+		World world = projectile.getWorld();
 
 		if (
 			shooter instanceof Player &&
 			projectile.getType() == this.SKILL_ENTITY
 		) {
-			projectile.getWorld().strikeLightning(
+			projectile.remove();
+
+			world.strikeLightning(
 				projectile.getLocation()
 			);
-			projectile.getWorld().createExplosion(
+			world.createExplosion(
 				projectile.getLocation(),
 				this.EXPLOSION_SIZE,
 				false, false
 			);
-			projectile.remove();
 		}
 	}
 }

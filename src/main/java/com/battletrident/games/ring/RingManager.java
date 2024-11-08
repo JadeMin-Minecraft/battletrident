@@ -1,12 +1,8 @@
 package com.battletrident.games.ring;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.WorldBorder;
 
-import static com.battletrident.consts.Plugin.*;
+import static com.battletrident.Consts.*;
 
 public class RingManager {
 	private static WorldBorder worldBorder;
@@ -26,19 +22,19 @@ public class RingManager {
 		worldBorder.setDamageAmount(ring.damage());
 	}
 	private static void repeat() {
-		if (phase.hasMore()) {
-			Ring current = phase.current();
-			setRing(current);
+		Ring current = phase.current();
+		setRing(current);
 
-			current.ender = runTaskLater(() -> {
-				phase.notifyEnd();
+		current.ender = runTaskLater(() -> {
+			phase.notifyEnd();
 
-				current.starter = runTaskLater(() -> {
+			current.starter = runTaskLater(() -> {
+				if (phase.hasMore()) {
 					phase.next();
 					repeat();
-				}, current.delay() * 20);
-			}, current.speed() * 20);
-		}
+				}
+			}, current.delay() * 20);
+		}, current.speed() * 20);
 	}
 
 	public static void start() {

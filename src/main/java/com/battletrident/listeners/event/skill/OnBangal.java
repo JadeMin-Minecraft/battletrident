@@ -26,7 +26,7 @@ public class OnBangal implements Listener {
 	}
 
 	@EventHandler
-	public void OnEntityDamage(EntityDamageEvent event) {
+	public void onEntityDamage(EntityDamageEvent event) {
 		if (!GameManager.isPlaying()) return;
 
 		if (event.getEntityType() == EntityType.PLAYER) {

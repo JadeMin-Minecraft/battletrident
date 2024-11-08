@@ -1,37 +1,32 @@
 package com.battletrident.guis.admin;
 
+import com.battletrident.utils.MCGUI.MCButton;
+import com.battletrident.utils.MCGUI.MCGUI;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.InventoryHolder;
 
 public class AdminButtons {
-	public final ItemStack[] items = new ItemStack[2];
+	private final int INVENTORY_SIZE = 9;
+	private final MCGUI gui;
 
-	public AdminButtons(Player opener) {
-		items[0] = new ItemStack(Material.FIREWORK_ROCKET, 1);
-		items[1] = new ItemStack(Material.BARRIER, 1);
-
-		ItemMeta tempMeta;
-
-		tempMeta = items[0].getItemMeta();
-		tempMeta.displayName(
-			Component.text("게임 시작하기")
-		);
-		items[0].setItemMeta(tempMeta);
-
-		tempMeta = items[1].getItemMeta();
-		tempMeta.displayName(
-			Component.text("게임 중지하기")
-		);
-		items[1].setItemMeta(tempMeta);
+	AdminButtons(InventoryHolder holder) {
+		this.gui = new MCGUI(holder, INVENTORY_SIZE);
 	}
 
-	public void apply(Inventory inventory) {
-		for (ItemStack item : items) {
-			inventory.addItem(item);
-		}
+	Inventory build() {
+		gui.setTitle(Component.text("관리자 패널"));
+
+		MCButton playBtn = new MCButton(Material.FIREWORK_ROCKET);
+		MCButton stopBtn = new MCButton(Material.BARRIER);
+
+		playBtn.displayName(Component.text("게임 시작하기"));
+		stopBtn.displayName(Component.text("게임 중지하기"));
+
+		gui.setButton(0, playBtn);
+		gui.setButton(1, stopBtn);
+
+		return gui.build();
 	}
 }

@@ -16,7 +16,7 @@ public class PhaseManager {
 		event.callEvent();
 	}
 	public boolean hasMore() {
-		return index < RINGS.length + 1;
+		return index + 1 < RINGS.length;
 	}
 	public Ring current() {
 		return event.getRing();

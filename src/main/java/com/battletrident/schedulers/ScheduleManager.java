@@ -1,15 +1,14 @@
 package com.battletrident.schedulers;
 
 import com.battletrident.games.state.*;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import static com.battletrident.consts.Plugin.*;
+import static com.battletrident.Consts.*;
 
 public class ScheduleManager {
 	public static void register() {
-		getScheduler().scheduleSyncRepeatingTask(plugin, () -> {
+		getScheduler().scheduleSyncRepeatingTask(Plugin, () -> {
 			if (GameManager.isPlaying()) {
 				getServer().getOnlinePlayers().forEach(player -> {
 					ItemStack itemTrident = new ItemStack(Material.TRIDENT, 1);

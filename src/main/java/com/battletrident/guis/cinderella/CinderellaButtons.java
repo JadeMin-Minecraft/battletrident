@@ -1,39 +1,44 @@
 package com.battletrident.guis.cinderella;
 
+import com.battletrident.utils.MCGUI.MCButton;
+import com.battletrident.utils.MCGUI.MCGUI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
 
-import static com.battletrident.consts.Plugin.getServer;
+import static com.battletrident.Consts.getServer;
 
 public class CinderellaButtons {
+	private final int INVENTORY_SIZE = 9;
+	private final MCGUI gui;
+
 	private final List<? extends Player> players;
 
-	public CinderellaButtons(Player opener) {
+	CinderellaButtons(InventoryHolder holder) {
+		this.gui = new MCGUI(holder, INVENTORY_SIZE);
+
 		this.players = getServer().getOnlinePlayers().stream().filter(p ->
 			p.getGameMode() != GameMode.SPECTATOR/* && !p.equals(opener)*/
 		).toList();
 	}
 
-	public void apply(Inventory inventory) {
-		for (int index = 0; index < inventory.getSize(); index++) {
-			ItemStack item;
+	Inventory build() {
+		for (int index = 0; index < gui.getButtons().length; index++) {
+			MCButton<SkullMeta> button;
 
 			if (index < this.players.size()) {
-				item = new ItemStack(Material.PLAYER_HEAD, 1);
 				Player player = this.players.get(index);
-				SkullMeta meta = (SkullMeta)item.getItemMeta();
 
-				meta.displayName(Component.text(player.getName()));
-				meta.lore(
+				button = new MCButton<>(Material.PLAYER_HEAD);
+				button.displayName(Component.text(player.getName()));
+				button.description(
 					List.of(
 						Component.text(
 							String.format("%s", player.getName()),
@@ -46,28 +51,25 @@ public class CinderellaButtons {
 						)
 					)
 				);
-				meta.setOwningPlayer(player);
 
-				item.setItemMeta(meta);
+				button.meta.setOwningPlayer(player);
 			} else {
-				item = new ItemStack(Material.BARRIER, 1);
-				ItemMeta meta = item.getItemMeta();
-
-				meta.displayName(
+				button = new MCButton<>(Material.BARRIER);
+				button.displayName(
 					Component.text(
 						"X",
 						NamedTextColor.RED
 					)
 				);
-				meta.lore(
+				button.description(
 					List.of(
 						Component.text("아무것도 없어 바보야")
 					)
 				);
-
-				item.setItemMeta(meta);
 			}
-			inventory.setItem(index, item);
+			gui.setButton(index, button);
 		}
+
+		return gui.build();
 	}
 }

@@ -8,16 +8,8 @@ import org.bukkit.entity.Player;
 public class BT implements BasicCommand {
 	@Override
 	public void execute(CommandSourceStack stack, String[] args) {
-		/*if (args.length != 1) return;
-
-		if (args[0].equalsIgnoreCase("start")) {
-			GameManager.playGame();
-		}
-		if (args[0].equalsIgnoreCase("stop")) {
-			GameManager.stopGame();
-		}*/
 		Player player = (Player)stack.getSender();
-		AdminGUI gui = new AdminGUI(player);
+		AdminGUI gui = new AdminGUI();
 
 		player.openInventory(gui.getInventory());
 	}

@@ -5,7 +5,7 @@ import com.battletrident.listeners.event.skill.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
-import static com.battletrident.consts.Plugin.plugin;
+import static com.battletrident.Consts.Plugin;
 
 public class EventManager {
 	private static final Listener[] LISTENERS = {
@@ -23,7 +23,7 @@ public class EventManager {
 	public static void register() {
 		for (Listener listener : LISTENERS) {
 			Bukkit.getPluginManager()
-				.registerEvents(listener, plugin);
+				.registerEvents(listener, Plugin);
 		}
 	}
 }
