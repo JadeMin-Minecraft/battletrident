@@ -1,7 +1,6 @@
 package com.battletrident.listeners.event.skill;
 
 import com.battletrident.games.state.GameManager;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.World;

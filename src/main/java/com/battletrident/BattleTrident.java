@@ -6,8 +6,6 @@ import com.battletrident.listeners.EventManager;
 import com.battletrident.schedulers.ScheduleManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static com.battletrident.Consts.getWorld;
-
 public class BattleTrident extends JavaPlugin {
 	@Override
 	public void onEnable() {
