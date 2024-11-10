@@ -1,7 +1,7 @@
 package com.battletrident.listeners.event.skill;
 
 import com.battletrident.games.state.GameManager;
-import com.battletrident.guis.cinderella.CinderellaGUI;
+import com.battletrident.guis.cinderellaGUI.CinderellaGUI;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -23,7 +23,7 @@ import org.bukkit.potion.PotionEffectType;
 public class OnCinderella implements Listener {
 	private final Material SKILL_ITEM = Material.ENDER_PEARL;
 	private final EntityType SKILL_ENTITY = EntityType.ENDER_PEARL;
-	private final int SKILL_COOLDOWN = 60;
+	private final int SKILL_COOLDOWN = 120;
 	private final int SKILL_DURATION = 2;
 
 	@EventHandler
@@ -42,8 +42,8 @@ public class OnCinderella implements Listener {
 
 			if (player.hasCooldown(this.SKILL_ITEM)) return;
 
-			if (action.isRightClick()) {
-				InventoryHolder holder = new CinderellaGUI();
+			if (action.isLeftClick()) {
+				InventoryHolder holder = new CinderellaGUI(player);
 				player.openInventory(holder.getInventory());
 			}
 		}
@@ -69,7 +69,7 @@ public class OnCinderella implements Listener {
 					clickedPlayer.addPotionEffect(
 						new PotionEffect(
 							PotionEffectType.GLOWING,
-								SKILL_DURATION * 20, 255, true
+							SKILL_DURATION * 20, 255, true
 						)
 					);
 					Bukkit.broadcast(

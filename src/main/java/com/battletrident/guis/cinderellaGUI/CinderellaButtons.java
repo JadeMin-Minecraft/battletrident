@@ -1,4 +1,4 @@
-package com.battletrident.guis.cinderella;
+package com.battletrident.guis.cinderellaGUI;
 
 import com.battletrident.utils.MCGUI.MCButton;
 import com.battletrident.utils.MCGUI.MCGUI;
@@ -21,15 +21,20 @@ public class CinderellaButtons {
 
 	private final List<? extends Player> players;
 
-	CinderellaButtons(InventoryHolder holder) {
+	CinderellaButtons(InventoryHolder holder, Player opener) {
 		this.gui = new MCGUI(holder, INVENTORY_SIZE);
 
 		this.players = getServer().getOnlinePlayers().stream().filter(p ->
-			p.getGameMode() != GameMode.SPECTATOR/* && !p.equals(opener)*/
+			p.getGameMode() != GameMode.SPECTATOR &&
+			p.getUniqueId() != opener.getUniqueId()
 		).toList();
 	}
 
 	Inventory build() {
+		this.gui.setTitle(
+			Component.text("비비디 바비디 BOOM💥")
+		);
+
 		for (int index = 0; index < gui.getButtons().length; index++) {
 			MCButton<SkullMeta> button;
 
@@ -39,15 +44,13 @@ public class CinderellaButtons {
 				button = new MCButton<>(Material.PLAYER_HEAD);
 				button.displayName(Component.text(player.getName()));
 				button.description(
-					List.of(
+					Component.text(
+						String.format("%s", player.getName()),
+						NamedTextColor.YELLOW
+					).append(
 						Component.text(
-							String.format("%s", player.getName()),
-							NamedTextColor.YELLOW
-						).append(
-							Component.text(
-								"님의 위치를 밝힙니다.",
-								NamedTextColor.WHITE
-							)
+							"님의 위치를 밝힙니다.",
+							NamedTextColor.WHITE
 						)
 					)
 				);
@@ -62,9 +65,7 @@ public class CinderellaButtons {
 					)
 				);
 				button.description(
-					List.of(
-						Component.text("아무것도 없어 바보야")
-					)
+					Component.text("아무것도 없어 바보야")
 				);
 			}
 			gui.setButton(index, button);

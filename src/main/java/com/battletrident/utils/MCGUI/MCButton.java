@@ -30,8 +30,8 @@ public class MCButton<T extends ItemMeta> {
 		return this;
 	}
 
-	public MCButton<T> description(List<? extends Component> description) {
-		this.description = description;
+	public MCButton<T> description(Component ...description) {
+		this.description = List.of(description);
 
 		return this;
 	}

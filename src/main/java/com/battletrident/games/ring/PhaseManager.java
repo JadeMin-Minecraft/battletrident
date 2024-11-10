@@ -2,14 +2,15 @@ package com.battletrident.games.ring;
 
 public class PhaseManager {
 	public final Ring[] RINGS = {
-		new Ring(0, 300, 2, 0, 10),
-		new Ring(1, 200, 40, 0.001, 30),
-		new Ring(2, 100, 40, 0.1, 30),
-		new Ring(3, 1, 60, 1, -1),
+		new Ring(0, 400, 2, 0, 10),
+		new Ring(1, 300, 60, 0.0001, 30),
+		new Ring(2, 200, 60, 0.0001, 30),
+		new Ring(3, 100, 60, 0.1, 30),
+		new Ring(4, 1, 60, 1, -1),
 	};
+	private final RingUpdateEvent event = new RingUpdateEvent(RINGS[0], null);
 
 	private int index = 0;
-	private final RingUpdateEvent event = new RingUpdateEvent(RINGS[index], null);
 
 	public void notifyEnd() {
 		event.setState(RingState.ENDED);
@@ -22,12 +23,10 @@ public class PhaseManager {
 		return event.getRing();
 	}
 	public Ring next() {
-		if (hasMore()) {
-			event.setRing(RINGS[++index]);
-			event.callEvent();
+		event.setRing(RINGS[++index]);
+		event.callEvent();
 
-			return event.getRing();
-		} else throw new IndexOutOfBoundsException();
+		return event.getRing();
 	}
 	public Ring previous() {
 		if (index > 0) {

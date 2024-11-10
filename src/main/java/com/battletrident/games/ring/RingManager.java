@@ -9,7 +9,7 @@ public class RingManager {
 	private static PhaseManager phase;
 
 	public static void register() {
-		worldBorder = getServer().getWorld("world").getWorldBorder();
+		worldBorder = getWorld().getWorldBorder();
 		worldBorder.setWarningDistance(30);
 		worldBorder.setWarningTime(0);
 		worldBorder.setDamageBuffer(0);
@@ -28,26 +28,26 @@ public class RingManager {
 		current.ender = runTaskLater(() -> {
 			phase.notifyEnd();
 
-			current.starter = runTaskLater(() -> {
-				if (phase.hasMore()) {
+			if (phase.hasMore()) {
+				current.starter = runTaskLater(() -> {
 					phase.next();
 					repeat();
-				}
-			}, current.delay() * 20);
+				}, current.delay() * 20);
+			}
 		}, current.speed() * 20);
 	}
 
-	public static void start() {
+	public static void reset() {
+		worldBorder.setCenter(getWorld().getSpawnLocation());
+
 		phase.clearTasks();
 		phase.set(0);
-
-		repeat();
+		setRing(phase.current());
 	}
 
-	public static void reset() {
-		phase.clearTasks();
-		phase.set(0);
+	public static void start() {
+		reset();
 
-		setRing(phase.current());
+		repeat();
 	}
 }

@@ -14,6 +14,7 @@ public class EventManager {
 		new OnGameUpdate(),
 		new OnRingUpdate(),
 		new OnPlayer(),
+		new OnDeath(),
 
 		new OnTrident(),
 		new OnCinderella(),
