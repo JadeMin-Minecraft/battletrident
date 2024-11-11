@@ -35,6 +35,11 @@ tasks.withType(JavaCompile).configureEach {
 	}
 }
 
+tasks.withType(Jar).configureEach {
+	archiveFileName = "plugin.jar"
+	destinationDirectory = file("./run/plugins/")
+}
+
 processResources {
 	def props = [version: version]
 	inputs.properties props
@@ -42,9 +47,4 @@ processResources {
 	filesMatching("plugin.yml") {
 		expand props
 	}
-}
-
-tasks.jar {
-	archiveFileName = "plugin.jar"
-	destinationDirectory = file("./run/plugins/")
 }
