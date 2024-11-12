@@ -26,9 +26,9 @@ public class AdminButtons {
 		stopBtn.displayName(Component.text("중지"));
 		settingBtn.displayName(Component.text("설정"));
 
-		gui.setButton(0, playBtn);
-		gui.setButton(1, stopBtn);
-		gui.setButton(8, settingBtn);
+		gui.setButton(1, playBtn);
+		gui.setButton(2, stopBtn);
+		gui.setButton(9, settingBtn);
 
 		return gui.build();
 	}

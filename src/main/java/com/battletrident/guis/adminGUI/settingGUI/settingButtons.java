@@ -27,7 +27,7 @@ public class settingButtons {
 			Component.text("현재 위치를 맵의 중앙으로 지정합니다.")
 		);
 
-		gui.setButton(0, centeringBtn);
+		gui.setButton(1, centeringBtn);
 
 		return gui.build();
 	}

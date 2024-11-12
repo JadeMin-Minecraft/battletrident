@@ -68,7 +68,8 @@ public class CinderellaButtons {
 					Component.text("아무것도 없어 바보야")
 				);
 			}
-			gui.setButton(index, button);
+
+			gui.setButton(index + 1, button);
 		}
 
 		return gui.build();
