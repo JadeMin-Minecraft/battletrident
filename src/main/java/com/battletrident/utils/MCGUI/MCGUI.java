@@ -42,7 +42,7 @@ public class MCGUI {
 		return this.buttons[pos];
 	}
 	public MCGUI setButton(int pos, MCButton button) {
-		this.buttons[pos] = button;
+		this.buttons[pos - 1] = button;
 
 		return this;
 	}
