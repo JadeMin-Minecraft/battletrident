@@ -5,10 +5,10 @@ import com.battletrident.listeners.event.skill.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
-import static com.battletrident.Consts.Plugin;
+import static com.battletrident.consts.Plugin.Plugin;
 
 public class EventManager {
-	private static final Listener[] LISTENERS = {
+	private final Listener[] LISTENERS = {
 		new OnAdminGUI(),
 
 		new OnGameUpdate(),
@@ -21,7 +21,7 @@ public class EventManager {
 		new OnBangal(),
 	};
 
-	public static void register() {
+	public EventManager() {
 		for (Listener listener : LISTENERS) {
 			Bukkit.getPluginManager()
 				.registerEvents(listener, Plugin);

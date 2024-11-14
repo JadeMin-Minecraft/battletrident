@@ -1,10 +1,6 @@
 package com.battletrident.games.state;
 
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
-
-import static com.battletrident.Consts.getServer;
 
 public class GameManager {
 	private static final GameUpdateEvent gameState = new GameUpdateEvent(GameState.ENDED, null);

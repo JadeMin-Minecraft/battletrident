@@ -16,7 +16,8 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 
-import static com.battletrident.Consts.*;
+import static com.battletrident.consts.Plugin.*;
+import static com.battletrident.consts.Manager.RingManager;
 
 public class OnGameUpdate implements Listener {
 	@EventHandler

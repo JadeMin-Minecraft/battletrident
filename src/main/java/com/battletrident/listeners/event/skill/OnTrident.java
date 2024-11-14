@@ -14,7 +14,7 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import static com.battletrident.Consts.*;
+import static com.battletrident.consts.Plugin.*;
 
 public class OnTrident implements Listener {
 	private final Material SKILL_ITEM = Material.TRIDENT;

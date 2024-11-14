@@ -6,7 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-import static com.battletrident.Consts.getServer;
+import static com.battletrident.consts.Plugin.getServer;
 
 public class MCGUI {
 	private final InventoryHolder HOLDER;
@@ -39,7 +39,7 @@ public class MCGUI {
 	}
 
 	public MCButton getButton(int pos) {
-		return this.buttons[pos];
+		return this.buttons[pos - 1];
 	}
 	public MCGUI setButton(int pos, MCButton button) {
 		this.buttons[pos - 1] = button;

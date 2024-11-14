@@ -14,7 +14,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.util.List;
 
-import static com.battletrident.Consts.*;
+import static com.battletrident.consts.Plugin.*;
 
 public class OnDeath implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)

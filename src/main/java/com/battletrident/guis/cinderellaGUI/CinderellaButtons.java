@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
 
-import static com.battletrident.Consts.getServer;
+import static com.battletrident.consts.Plugin.getServer;
 
 public class CinderellaButtons {
 	private final int INVENTORY_SIZE = 9;

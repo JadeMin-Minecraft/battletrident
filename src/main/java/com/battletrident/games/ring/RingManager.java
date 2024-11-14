@@ -2,13 +2,13 @@ package com.battletrident.games.ring;
 
 import org.bukkit.WorldBorder;
 
-import static com.battletrident.Consts.*;
+import static com.battletrident.consts.Plugin.*;
 
 public class RingManager {
-	private static WorldBorder worldBorder;
-	private static PhaseManager phase;
+	private WorldBorder worldBorder;
+	private PhaseManager phase;
 
-	public static void register() {
+	public RingManager() {
 		worldBorder = getWorld().getWorldBorder();
 		worldBorder.setWarningDistance(30);
 		worldBorder.setWarningTime(0);
@@ -17,11 +17,11 @@ public class RingManager {
 		phase = new PhaseManager();
 	}
 
-	private static void setRing(Ring ring) {
+	private void setRing(Ring ring) {
 		worldBorder.setSize(ring.size(), ring.speed());
 		worldBorder.setDamageAmount(ring.damage());
 	}
-	private static void repeat() {
+	private void repeat() {
 		Ring current = phase.current();
 		setRing(current);
 
@@ -37,7 +37,7 @@ public class RingManager {
 		}, current.speed() * 20);
 	}
 
-	public static void reset() {
+	public void reset() {
 		worldBorder.setCenter(getWorld().getSpawnLocation());
 
 		phase.clearTasks();
@@ -45,7 +45,7 @@ public class RingManager {
 		setRing(phase.current());
 	}
 
-	public static void start() {
+	public void start() {
 		reset();
 
 		repeat();

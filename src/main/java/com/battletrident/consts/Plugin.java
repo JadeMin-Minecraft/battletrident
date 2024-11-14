@@ -1,5 +1,6 @@
-package com.battletrident;
+package com.battletrident.consts;
 
+import com.battletrident.BattleTrident;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-public class Consts {
+public class Plugin {
 	public static BattleTrident Plugin;
 	public static Logger Logger;
 

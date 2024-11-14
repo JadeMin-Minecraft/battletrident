@@ -11,10 +11,10 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import static com.battletrident.Consts.*;
+import static com.battletrident.consts.Plugin.*;
 
 public class ScheduleManager {
-	public static void register() {
+	public ScheduleManager() {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
