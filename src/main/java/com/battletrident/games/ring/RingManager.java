@@ -5,8 +5,8 @@ import org.bukkit.WorldBorder;
 import static com.battletrident.consts.Plugin.*;
 
 public class RingManager {
-	private WorldBorder worldBorder;
-	private PhaseManager phase;
+	private final WorldBorder worldBorder;
+	private final PhaseManager phase;
 
 	public RingManager() {
 		worldBorder = getWorld().getWorldBorder();
