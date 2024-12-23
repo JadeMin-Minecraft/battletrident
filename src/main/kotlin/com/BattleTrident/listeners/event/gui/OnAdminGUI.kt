@@ -1,7 +1,7 @@
 package com.BattleTrident.listeners.event.gui
 
-import com.BattleTrident.Manager.dispatchCommand
-import com.BattleTrident.gameManager
+import com.BattleTrident.Managers.gameManager
+import com.BattleTrident.Utils.dispatchCommand
 import com.BattleTrident.guis.adminGUI.AdminGUI
 import com.BattleTrident.guis.adminGUI.settingGUI.SettingGUI
 import org.bukkit.Material

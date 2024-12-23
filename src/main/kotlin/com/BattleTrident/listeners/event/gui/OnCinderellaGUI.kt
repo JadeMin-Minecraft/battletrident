@@ -1,9 +1,9 @@
 package com.BattleTrident.listeners.event.gui
 
+import com.BattleTrident.Managers.gameManager
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
-import com.BattleTrident.Manager.server
-import com.BattleTrident.gameManager
+import com.BattleTrident.Utils.server
 import com.BattleTrident.guis.CinderellaGUI.CinderellaGUI
 import com.BattleTrident.listeners.event.skill.OnCinderella
 import org.bukkit.Material

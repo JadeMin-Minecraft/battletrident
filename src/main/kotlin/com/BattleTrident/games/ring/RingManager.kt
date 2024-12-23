@@ -1,8 +1,7 @@
-package com.battletrident.games.ring
+package com.BattleTrident.games.ring
 
-import com.BattleTrident.Manager.runTaskLater
-import com.BattleTrident.Manager.world
-import com.BattleTrident.games.ring.Ring
+import com.BattleTrident.Utils.runTaskLater
+import com.BattleTrident.Utils.world
 import org.bukkit.WorldBorder
 
 class RingManager {

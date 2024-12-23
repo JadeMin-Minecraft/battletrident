@@ -1,12 +1,12 @@
 package com.BattleTrident.listeners.event
 
+import com.BattleTrident.Managers.gameManager
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.title.Title
-import com.BattleTrident.Manager.onlinePlayers
-import com.BattleTrident.Manager.runTaskLater
-import com.BattleTrident.Manager.server
-import com.BattleTrident.gameManager
+import com.BattleTrident.Utils.onlinePlayers
+import com.BattleTrident.Utils.runTaskLater
+import com.BattleTrident.Utils.server
 import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority

@@ -1,4 +1,4 @@
-package com.battletrident.games.ring
+package com.BattleTrident.games.ring
 
 import com.BattleTrident.games.ring.Ring
 import com.BattleTrident.games.ring.RingState

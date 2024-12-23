@@ -1,14 +1,14 @@
 package com.BattleTrident.listeners.event
 
+import com.BattleTrident.Managers.gameManager
+import com.BattleTrident.Managers.ringManager
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
-import com.BattleTrident.Manager.dispatchCommand
-import com.BattleTrident.Manager.onlinePlayers
-import com.BattleTrident.Manager.server
-import com.BattleTrident.Manager.world
-import com.BattleTrident.gameManager
+import com.BattleTrident.Utils.dispatchCommand
+import com.BattleTrident.Utils.onlinePlayers
+import com.BattleTrident.Utils.server
+import com.BattleTrident.Utils.world
 import com.BattleTrident.games.state.GameUpdateEvent
-import com.BattleTrident.ringManager
 import org.bukkit.GameMode
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler

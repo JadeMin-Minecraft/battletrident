@@ -1,9 +1,9 @@
 package com.BattleTrident.schedulers
 
+import com.BattleTrident.BattleTrident.Companion.plugin
+import com.BattleTrident.Managers.gameManager
 import net.kyori.adventure.text.Component
-import com.BattleTrident.BattleTrident
-import com.BattleTrident.Manager.onlinePlayers
-import com.BattleTrident.gameManager
+import com.BattleTrident.Utils.onlinePlayers
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.PotionMeta
@@ -49,6 +49,6 @@ class ScheduleManager {
 					}
 				}
 			}
-		}.runTaskTimer(BattleTrident, 0, 1)
+		}.runTaskTimer(plugin, 0, 1)
 	}
 }

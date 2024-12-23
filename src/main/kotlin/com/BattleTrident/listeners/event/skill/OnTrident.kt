@@ -1,7 +1,7 @@
 package com.BattleTrident.listeners.event.skill
 
-import com.BattleTrident.BattleTrident
-import com.BattleTrident.gameManager
+import com.BattleTrident.Managers.gameManager
+import com.BattleTrident.Utils.plugin
 import org.bukkit.Material
 import org.bukkit.Particle
 import org.bukkit.Sound
@@ -44,7 +44,7 @@ class OnTrident : Listener {
 						)
 					}
 				}
-			}.runTaskTimer(BattleTrident, 0, 1)
+			}.runTaskTimer(plugin, 0, 1)
 		}
 	}
 

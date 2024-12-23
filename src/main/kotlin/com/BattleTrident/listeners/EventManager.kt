@@ -1,7 +1,7 @@
 package com.BattleTrident.listeners
 
-import com.BattleTrident.BattleTrident
-import com.BattleTrident.Manager.server
+import com.BattleTrident.BattleTrident.Companion.plugin
+import com.BattleTrident.Utils.server
 import com.BattleTrident.listeners.event.OnGameUpdate
 import com.BattleTrident.listeners.event.OnPlayerDeath
 import com.BattleTrident.listeners.event.OnPlayerInteract
@@ -31,7 +31,7 @@ class EventManager {
 		for (listener in LISTENERS) {
 			server.pluginManager.registerEvents(
 				listener,
-				BattleTrident
+				plugin
 			)
 		}
 	}

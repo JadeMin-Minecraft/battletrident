@@ -1,26 +1,34 @@
 package com.BattleTrident
 
-import com.BattleTrident.schedulers.ScheduleManager
-import com.battletrident.games.ring.RingManager
+import com.BattleTrident.Managers.commandManager
+import com.BattleTrident.Managers.eventManager
+import com.BattleTrident.Managers.playerManager
+import com.BattleTrident.Managers.ringManager
+import com.BattleTrident.Managers.scheduleManager
 import com.BattleTrident.commands.CommandManager
 import com.BattleTrident.games.player.PlayerManager
-import com.BattleTrident.games.state.GameManager
+import com.BattleTrident.games.ring.RingManager
 import com.BattleTrident.listeners.EventManager
+import com.BattleTrident.schedulers.ScheduleManager
 import org.bukkit.plugin.java.JavaPlugin
 
-val commandManager = CommandManager()
-val playerManager = PlayerManager()
-val scheduleManager = ScheduleManager()
-val eventManager = EventManager()
-val ringManager = RingManager()
-val gameManager = GameManager()
+class BattleTrident : JavaPlugin() {
+	companion object {
+		lateinit var plugin: BattleTrident
+	}
 
-object BattleTrident : JavaPlugin() {
-    override fun onEnable() {
+	override fun onEnable() {
+		plugin = this
+		Utils.register(this)
 
-    }
+		commandManager = CommandManager()
+		playerManager = PlayerManager()
+		scheduleManager = ScheduleManager()
+		eventManager = EventManager()
+		ringManager = RingManager()
+	}
 
-    override fun onDisable() {
+	override fun onDisable() {
 
-    }
+	}
 }

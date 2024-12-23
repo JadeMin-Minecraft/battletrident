@@ -1,7 +1,7 @@
 package com.BattleTrident.guis.adminGUI.settingGUI
 
 import net.kyori.adventure.text.Component
-import com.BattleTrident.Manager.server
+import com.BattleTrident.Utils.server
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryHolder

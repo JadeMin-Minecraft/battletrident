@@ -2,8 +2,8 @@ package com.BattleTrident.guis.CinderellaGUI
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
-import com.BattleTrident.Manager.onlinePlayers
-import com.BattleTrident.Manager.server
+import com.BattleTrident.Utils.onlinePlayers
+import com.BattleTrident.Utils.server
 import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.entity.Player

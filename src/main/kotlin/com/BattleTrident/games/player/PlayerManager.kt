@@ -1,6 +1,6 @@
 package com.BattleTrident.games.player
 
-import com.BattleTrident.Manager.onlinePlayers
+import com.BattleTrident.Utils.onlinePlayers
 import org.bukkit.entity.Player
 
 class PlayerManager {

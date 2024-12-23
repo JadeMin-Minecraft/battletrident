@@ -1,6 +1,6 @@
 package com.BattleTrident.listeners.event.skill
 
-import com.BattleTrident.gameManager
+import com.BattleTrident.Managers.gameManager
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler

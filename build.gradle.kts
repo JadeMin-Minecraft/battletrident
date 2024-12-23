@@ -40,6 +40,5 @@ tasks.processResources {
 }
 
 tasks.jar {
-	archiveBaseName = "plugin.jar"
-	destinationDirectory = file("run/plugins")
+	destinationDirectory = file("./run/plugins")
 }

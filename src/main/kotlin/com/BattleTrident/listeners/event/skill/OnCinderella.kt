@@ -1,6 +1,6 @@
 package com.BattleTrident.listeners.event.skill
 
-import com.BattleTrident.gameManager
+import com.BattleTrident.Managers.gameManager
 import com.BattleTrident.guis.CinderellaGUI.CinderellaGUI
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
