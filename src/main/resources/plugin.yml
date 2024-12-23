@@ -1,5 +1,5 @@
 name: BattleTrident
-version: 1.0.0
+version: '1.0.0'
 
-main: com.battletrident.BattleTrident
-api-version: 1.21
+main: com.BattleTrident.BattleTrident
+api-version: '1.21'
