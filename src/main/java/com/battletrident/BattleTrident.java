@@ -1,6 +1,6 @@
 package com.battletrident;
 
-import com.battletrident.consts.Manager;
+import com.battletrident.consts.Managers;
 import com.battletrident.consts.Plugin;
 import com.battletrident.commands.CommandManager;
 import com.battletrident.games.ring.RingManager;
@@ -14,10 +14,10 @@ public class BattleTrident extends JavaPlugin {
 		Plugin.Plugin = this;
 		Plugin.Logger = this.getLogger();
 
-		Manager.CommandManager = new CommandManager();
-		Manager.ScheduleManager = new ScheduleManager();
-		Manager.EventManager = new EventManager();
-		Manager.RingManager = new RingManager();
+		Managers.CommandManager = new CommandManager();
+		Managers.ScheduleManager = new ScheduleManager();
+		Managers.EventManager = new EventManager();
+		Managers.RingManager = new RingManager();
 	}
 
 	@Override

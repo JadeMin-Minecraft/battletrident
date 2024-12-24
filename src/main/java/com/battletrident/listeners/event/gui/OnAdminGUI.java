@@ -1,4 +1,4 @@
-package com.battletrident.listeners.event;
+package com.battletrident.listeners.event.gui;
 
 import com.battletrident.games.state.GameManager;
 import com.battletrident.guis.adminGUI.AdminGUI;

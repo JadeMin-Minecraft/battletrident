@@ -12,11 +12,11 @@ public class Ring {
 	public BukkitTask ender;
 
 	public Ring(
-		int no,
-		double size,
-		long speed,
-		double damage,
-		long delay
+			int no,
+			double size,
+			long speed,
+			double damage,
+			long delay
 	) {
 		this.no = no;
 		this.size = size;

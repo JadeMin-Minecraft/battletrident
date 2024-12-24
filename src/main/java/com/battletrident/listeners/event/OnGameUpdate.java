@@ -1,6 +1,5 @@
 package com.battletrident.listeners.event;
 
-import com.battletrident.games.ring.RingManager;
 import com.battletrident.games.state.GameManager;
 import com.battletrident.games.state.GameUpdateEvent;
 import net.kyori.adventure.text.Component;
@@ -17,7 +16,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.List;
 
 import static com.battletrident.consts.Plugin.*;
-import static com.battletrident.consts.Manager.RingManager;
+import static com.battletrident.consts.Managers.RingManager;
 
 public class OnGameUpdate implements Listener {
 	@EventHandler

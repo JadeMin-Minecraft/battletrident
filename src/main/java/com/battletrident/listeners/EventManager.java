@@ -1,6 +1,7 @@
 package com.battletrident.listeners;
 
 import com.battletrident.listeners.event.*;
+import com.battletrident.listeners.event.gui.OnAdminGUI;
 import com.battletrident.listeners.event.skill.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -13,8 +14,8 @@ public class EventManager {
 
 		new OnGameUpdate(),
 		new OnRingUpdate(),
-		new OnPlayer(),
-		new OnDeath(),
+		new OnPlayerInteract(),
+		new OnPlayerDeath(),
 
 		new OnTrident(),
 		new OnCinderella(),
