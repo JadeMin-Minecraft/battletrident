@@ -23,7 +23,7 @@ public class ScheduleManager {
 						PlayerInventory playerInv = player.getInventory();
 
 						ItemStack itemTrident = new ItemStack(Material.TRIDENT, 1);
-						ItemStack itemEnderPearl = new ItemStack(Material.ENDER_PEARL, 1);
+						//ItemStack itemEnderPearl = new ItemStack(Material.ENDER_PEARL, 1);
 						ItemStack itemHeal = new ItemStack(Material.POTION, 1);
 
 						itemHeal.editMeta(PotionMeta.class, meta -> {
@@ -41,8 +41,8 @@ public class ScheduleManager {
 						});
 
 						playerInv.setItem(0, itemTrident);
-						playerInv.setItem(1, itemEnderPearl);
-						playerInv.setItem(2, itemHeal);
+						//playerInv.setItem(1, itemEnderPearl);
+						playerInv.setItem(1, itemHeal);
 					}
 				} else {
 					for (Player player : getPlayers()) {

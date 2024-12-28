@@ -2,11 +2,16 @@ package com.battletrident.listeners.event;
 
 import com.battletrident.games.state.GameManager;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 public class OnPlayerInteract implements Listener {
@@ -17,6 +22,11 @@ public class OnPlayerInteract implements Listener {
 		if (GameManager.isPlaying()) {
 			player.setGameMode(GameMode.SPECTATOR);
 			player.sendMessage("게임이 이미 진행 중이므로 관전자로 전환됩니다.");
+		}
+
+		AttributeInstance maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+		if (maxHealth != null) {
+			maxHealth.setBaseValue(40);
 		}
 	}
 
@@ -45,7 +55,7 @@ public class OnPlayerInteract implements Listener {
 		}
 	}
 
-	/*@EventHandler
+	@EventHandler
 	public void onPlayerAttacksPlayer(EntityDamageByEntityEvent event) {
 		if (
 			event.getDamager() instanceof Player &&
@@ -54,7 +64,9 @@ public class OnPlayerInteract implements Listener {
 			Player damager = (Player)event.getDamager();
 			Player entity = (Player)event.getEntity();
 
-			event.setCancelled(true);
+			if (damager.getInventory().getItemInMainHand().getType() == Material.TRIDENT) {
+				event.setCancelled(true);
+			}
 		}
-	}*/
+	}
 }

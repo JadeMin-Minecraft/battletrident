@@ -19,8 +19,8 @@ import static com.battletrident.consts.Plugin.*;
 public class OnTrident implements Listener {
 	private final Material SKILL_ITEM = Material.TRIDENT;
 	private final EntityType SKILL_ENTITY = EntityType.TRIDENT;
-	private final int SKILL_COOLDOWN = 1;
-	private final float EXPLOSION_SIZE = 0.1f;
+	private final int SKILL_COOLDOWN = 2;
+	private final float EXPLOSION_SIZE = 0.0f;
 
 	@EventHandler
 	public void onTridentThrow(ProjectileLaunchEvent event) {

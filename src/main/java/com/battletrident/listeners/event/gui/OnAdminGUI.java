@@ -2,7 +2,7 @@ package com.battletrident.listeners.event.gui;
 
 import com.battletrident.games.state.GameManager;
 import com.battletrident.guis.adminGUI.AdminGUI;
-import com.battletrident.guis.adminGUI.settingGUI.settingGUI;
+import com.battletrident.guis.adminGUI.settingGUI.SettingGUI;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -23,7 +23,7 @@ public class OnAdminGUI implements Listener {
 
 				switch (clickedItem.getType()) {
 					case Material.WRITABLE_BOOK:
-						player.openInventory(new settingGUI().getInventory());
+						player.openInventory(new SettingGUI().getInventory());
 						break;
 					case Material.FIREWORK_ROCKET:
 						GameManager.playGame((Player) player);
@@ -42,7 +42,7 @@ public class OnAdminGUI implements Listener {
 		HumanEntity player = event.getWhoClicked();
 
 		if (clickedItem != null) {
-			if (event.getInventory().getHolder() instanceof settingGUI) {
+			if (event.getInventory().getHolder() instanceof SettingGUI) {
 				event.setCancelled(true);
 
 				switch (clickedItem.getType()) {

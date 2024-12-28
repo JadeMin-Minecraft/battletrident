@@ -13,10 +13,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.List;
-
+import static com.battletrident.consts.Managers.playerManager;
 import static com.battletrident.consts.Plugin.*;
-import static com.battletrident.consts.Managers.RingManager;
+import static com.battletrident.consts.Managers.ringManager;
 
 public class OnGameUpdate implements Listener {
 	@EventHandler
@@ -52,7 +51,7 @@ public class OnGameUpdate implements Listener {
 		}
 
 		if (GameManager.isPlaying()) {
-			RingManager.start();
+			ringManager.start();
 
 			Location worldSpawn = getWorld().getSpawnLocation();
 			int ringRadius = (int)getWorld().getWorldBorder().getSize() / 2;
@@ -62,32 +61,24 @@ public class OnGameUpdate implements Listener {
 					worldSpawn.getBlockX(), worldSpawn.getBlockZ(), ringRadius / getPlayers().size(), ringRadius
 				)
 			);
-		} else {
-			RingManager.reset();
+
+			for (Player player : getPlayers()) {
+				playerManager.giveImmune(player);
+			}
+		}
+		if (GameManager.isEnded()) {
+			ringManager.reset();
 
 			for (Player player : getPlayers()) {
 				player.resetCooldown();
 				player.teleport(player.getWorld().getSpawnLocation());
-				player.addPotionEffects(
-					List.of(
-						new PotionEffect(
-							PotionEffectType.WEAKNESS,
-							PotionEffect.INFINITE_DURATION,
-							Integer.MAX_VALUE,
-							true
-						),
-						new PotionEffect(
-							PotionEffectType.RESISTANCE,
-							PotionEffect.INFINITE_DURATION,
-							Integer.MAX_VALUE,
-							true
-						),
-						new PotionEffect(
-							PotionEffectType.SATURATION,
-							PotionEffect.INFINITE_DURATION,
-							Integer.MAX_VALUE,
-							true
-						)
+				playerManager.giveImmune(player, true);
+				player.addPotionEffect(
+					new PotionEffect(
+						PotionEffectType.WEAKNESS,
+						PotionEffect.INFINITE_DURATION,
+						Integer.MAX_VALUE,
+						true, false
 					)
 				);
 			}

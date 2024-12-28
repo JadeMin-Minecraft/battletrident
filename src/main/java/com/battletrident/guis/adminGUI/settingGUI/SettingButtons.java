@@ -7,11 +7,11 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-public class settingButtons {
+public class SettingButtons {
 	private final int INVENTORY_SIZE = 9;
 	private final MCGUI gui;
 
-	settingButtons(InventoryHolder holder) {
+	SettingButtons(InventoryHolder holder) {
 		this.gui = new MCGUI(holder, INVENTORY_SIZE);
 	}
 

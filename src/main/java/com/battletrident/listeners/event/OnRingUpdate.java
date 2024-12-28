@@ -8,8 +8,13 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import static com.battletrident.consts.Plugin.getPlayers;
 
 public class OnRingUpdate implements Listener {
 	private static void notifyStart(Ring ring) {
@@ -58,6 +63,28 @@ public class OnRingUpdate implements Listener {
 			notifyStart(ring);
 		} else if (event.getState() == RingState.ENDED) {
 			notifyEnd(ring);
+		}
+	}
+
+	@EventHandler
+	public void onLastRing(RingUpdateEvent event) {
+		if (!GameManager.isPlaying()) return;
+
+		Ring ring = event.getRing();
+
+		if (event.getState() == RingState.ENDED) {
+			if (ring.delay() == -1) {
+				for (Player player : getPlayers()) {
+					player.addPotionEffect(
+						new PotionEffect(
+							PotionEffectType.INSTANT_DAMAGE,
+							PotionEffect.INFINITE_DURATION,
+							0,
+							true, false
+						)
+					);
+				}
+			}
 		}
 	}
 }

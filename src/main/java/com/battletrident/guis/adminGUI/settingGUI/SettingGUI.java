@@ -3,11 +3,11 @@ package com.battletrident.guis.adminGUI.settingGUI;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-public class settingGUI implements InventoryHolder {
-	private final settingButtons gui;
+public class SettingGUI implements InventoryHolder {
+	private final SettingButtons gui;
 
-	public settingGUI() {
-		this.gui = new settingButtons(this);
+	public SettingGUI() {
+		this.gui = new SettingButtons(this);
 	}
 
 	@Override
