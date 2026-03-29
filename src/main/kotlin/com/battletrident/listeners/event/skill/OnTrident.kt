@@ -25,12 +25,9 @@ class OnTrident : Listener {
 		if (!gameManager.isPlaying) return
 
 		val projectile = event.entity
-		val shooter = projectile.shooter
+		val shooter = projectile.shooter as? Player ?: return
 
-		if (
-			shooter is Player &&
-			projectile.type == SKILL_ENTITY
-		) {
+		if (projectile.type == SKILL_ENTITY) {
 			shooter.setCooldown(SKILL_ITEM, SKILL_COOLDOWN * 20)
 
 			object : BukkitRunnable() {
@@ -54,14 +51,12 @@ class OnTrident : Listener {
 		if (!gameManager.isPlaying) return
 
 		val projectile = event.entity
-		val shooter = projectile.shooter
-		val world = projectile.world
+		val shooter = projectile.shooter as? Player ?: return
 
-		if (
-			shooter is Player &&
-			projectile.type == SKILL_ENTITY
-		) {
+		if (projectile.type == SKILL_ENTITY) {
 			if (event.hitEntity != null) {
+				val world = projectile.world
+				
 				shooter.playSound(
 					shooter.location,
 					Sound.ENTITY_ARROW_HIT_PLAYER,
