@@ -3,7 +3,7 @@ plugins {
 	id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-group = "com.BattleTrident"
+group = "com.battletrident"
 version = "1.0.0"
 
 repositories {
