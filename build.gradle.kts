@@ -3,8 +3,8 @@ plugins {
 	id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-group = "com.battletrident"
-version = "1.0.0"
+val group = "com.battletrident"
+val version = "1.0.0"
 
 repositories {
 	mavenCentral()
@@ -15,9 +15,8 @@ repositories {
 		name = "sonatype"
 	}
 }
-
 dependencies {
-	compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
+	compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }
 
@@ -26,19 +25,22 @@ kotlin {
 	jvmToolchain(targetJavaVersion)
 }
 
-tasks.build {
-	dependsOn("shadowJar")
-}
-
-tasks.processResources {
-	val props = mapOf("version" to version)
-	inputs.properties(props)
-	filteringCharset = "UTF-8"
-	filesMatching("plugin.yml") {
-		expand(props)
+tasks {
+	processResources {
+		val props = mapOf("version" to version)
+		inputs.properties(props)
+		filteringCharset = "UTF-8"
+		filesMatching("plugin.yml") {
+			expand(props)
+		}
 	}
-}
 
-tasks.jar {
-	destinationDirectory = file("./run/plugins")
+	build {
+		dependsOn("shadowJar")
+	}
+	
+	shadowJar {
+		destinationDirectory = file("./run/plugins")
+		archiveFileName = "plugin.jar"
+	}
 }

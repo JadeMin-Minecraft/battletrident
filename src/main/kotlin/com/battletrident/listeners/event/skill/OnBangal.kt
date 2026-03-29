@@ -1,7 +1,6 @@
 package com.battletrident.listeners.event.skill
 
 import com.battletrident.BattleTrident.Companion.gameManager
-import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -10,7 +9,7 @@ import org.bukkit.event.entity.EntityRegainHealthEvent
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
-class OnOctane : Listener {
+class OnBangal : Listener {
 	companion object {
 		private const val TARGET_HEALTH = 9.0
 	}
@@ -30,26 +29,20 @@ class OnOctane : Listener {
 	@EventHandler
 	fun onEntityDamage(event: EntityDamageEvent) {
 		if (!gameManager.isPlaying) return
+		
+		val player = event.entity as? Player ?: return
 
-		if (event.entityType != EntityType.PLAYER) {
-			val player = event.entity as Player
-			val finalHealth = player.health - event.finalDamage
-
-			effect(finalHealth, player)
-		}
+		val finalHealth = player.health - event.finalDamage
+		effect(finalHealth, player)
 	}
 
 	@EventHandler
 	fun onPlayerHealt(event: EntityRegainHealthEvent) {
 		if (!gameManager.isPlaying) return
 
-		val entity = event.entity
+		val player = event.entity as? Player ?: return
 
-		if (entity.type == EntityType.PLAYER) {
-			val player = entity as Player
-			val finalHealth = player.health + event.amount
-
-			effect(finalHealth, player)
-		}
+		val finalHealth = player.health + event.amount
+		effect(finalHealth, player)
 	}
 }

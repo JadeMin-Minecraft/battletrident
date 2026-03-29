@@ -8,11 +8,10 @@ class RingUpdateEvent(
 	private var state: RingState?,
 ) : Event() {
 	companion object {
-		val handlerList: HandlerList = HandlerList()
+		val HANDLER_LIST: HandlerList = HandlerList()
+		@JvmStatic fun getHandlerList() = HANDLER_LIST
 	}
-	override fun getHandlers(): HandlerList {
-		return handlerList
-	}
+	override fun getHandlers() = HANDLER_LIST
 
 	fun getRing() = ring
 	fun setRing(ring: Ring) {

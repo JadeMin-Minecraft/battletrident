@@ -10,6 +10,7 @@ class GameUpdateEvent(
 ) : Event() {
 	companion object {
 		private val HANDLER_LIST = HandlerList()
+		@JvmStatic fun getHandlerList() = HANDLER_LIST
 	}
 	override fun getHandlers() = HANDLER_LIST
 

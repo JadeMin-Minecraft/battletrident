@@ -40,7 +40,7 @@ class OnTrident : Listener {
 					} else {
 						shooter.world.spawnParticle(
 							Particle.SONIC_BOOM,
-							projectile.getLocation(),
+							projectile.location,
 							1
 						)
 					}
