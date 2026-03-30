@@ -1,6 +1,7 @@
 package com.battletrident.listeners.event
 
 import com.battletrident.BattleTrident.Companion.playerManager
+import org.bukkit.attribute.Attribute
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
@@ -22,6 +23,9 @@ class OnPlayerJoinExit : Listener {
 	fun makePlayers2LineHealth(event: PlayerJoinEvent) {
 		val player = event.player
 		
-		player.healthScale = 40.0
+		val maxHealth = player.getAttribute(Attribute.MAX_HEALTH)
+		if (maxHealth != null) {
+			maxHealth.baseValue = 40.0
+		}
 	}
 }

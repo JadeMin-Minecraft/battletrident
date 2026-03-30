@@ -67,7 +67,7 @@ class OnTrident : Listener {
 					EXPLOSION_SIZE,
 					false, false
 				)
-				world.strikeLightningEffect(
+				world.strikeLightning(
 					projectile.location
 				)
 			}

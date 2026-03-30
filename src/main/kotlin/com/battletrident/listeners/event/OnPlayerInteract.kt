@@ -22,8 +22,6 @@ class OnPlayerInteract : Listener {
 
 	@EventHandler
 	fun onPlayerDropItem(event: PlayerDropItemEvent) {
-		if (!gameManager.isPlaying) return
-
 		event.isCancelled = true
 	}
 

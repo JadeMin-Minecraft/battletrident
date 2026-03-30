@@ -71,7 +71,7 @@ class OnRingUpdate : Listener {
 						PotionEffect(
 							PotionEffectType.WITHER,
 							PotionEffect.INFINITE_DURATION,
-							1
+							5
 						)
 					)
 				}
