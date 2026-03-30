@@ -22,7 +22,7 @@ class CinderellaGUI(opener: Player) : InventoryHolder {
 	)
 
 	private var players =
-		playerManager.getAll().filter {
+		playerManager.getAll().keys.filter {
 			it.gameMode != GameMode.SPECTATOR &&
 				it.uniqueId != opener.uniqueId
 		}

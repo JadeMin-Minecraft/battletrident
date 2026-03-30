@@ -33,7 +33,7 @@ class ScheduleManager {
 
 		object : BukkitRunnable() {
 			override fun run() {
-				val onlinePlayers = playerManager.getAll()
+				val onlinePlayers = playerManager.getAll().keys
 				
 				if (gameManager.isPlaying) {
 					for (player in onlinePlayers) {

@@ -1,50 +1,43 @@
 package com.battletrident.games.player
 
 import com.battletrident.BattleTrident.Companion.plugin
+import org.bukkit.Location
 import org.bukkit.entity.Player
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
+data class PlayerData(
+	var isAlive: Boolean,
+	var rank: Int,
+)
+
 class PlayerManager {
-	private val players = HashMap<Player, ArrayList<String>>()
+	val players = HashMap<Player, PlayerData>()
 
 	init {
 		for (player in plugin.server.onlinePlayers) {
-			players[player] = arrayListOf()
+			players[player] = PlayerData(
+				true,
+				0
+			)
 		}
 	}
 
-
-
 	fun add(player: Player) {
-		players[player] = arrayListOf()
+		players[player] = PlayerData(
+			true,
+			0
+		)
+	}
+	fun get(player: Player): PlayerData? {
+		return players[player]
 	}
 	fun remove(player: Player) {
 		players.remove(player)
 	}
-	fun get(UUID: String): Player? {
-		for (player in players.keys) {
-			if (player.uniqueId.toString() == UUID) {
-				return player
-			}
-		}
-
-		return null
+	fun getAll(): HashMap<Player, PlayerData> {
+		return players
 	}
-	fun getAll(): Set<Player> {
-		return players.keys
-	}
-
-	
-	
-	fun setSkills(player: Player, skills: List<String>) {
-		players[player]?.addAll(skills)
-	}
-	fun getSkills(player: Player): List<String>? {
-		return players[player]
-	}
-	
-	
 	
 	fun giveImmune(player: Player) {
 		player.addPotionEffects(
@@ -53,22 +46,21 @@ class PlayerManager {
 					PotionEffectType.WEAKNESS,
 					PotionEffect.INFINITE_DURATION,
 					Integer.MAX_VALUE,
-					true
+					true, false
 				),
 				PotionEffect(
 					PotionEffectType.RESISTANCE,
 					PotionEffect.INFINITE_DURATION,
 					Integer.MAX_VALUE,
-					true
+					true, false
 				),
 				PotionEffect(
 					PotionEffectType.REGENERATION,
 					PotionEffect.INFINITE_DURATION,
 					Integer.MAX_VALUE,
-					true
+					true, false
 				)
 			)
 		)
 	}
-		
 }

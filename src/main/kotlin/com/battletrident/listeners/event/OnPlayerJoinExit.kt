@@ -16,4 +16,12 @@ class OnPlayerJoinExit : Listener {
 	fun onPlayerQuit(event: PlayerQuitEvent) {
 		playerManager.remove(event.player)
 	}
+	
+	
+	@EventHandler
+	fun makePlayers2LineHealth(event: PlayerJoinEvent) {
+		val player = event.player
+		
+		player.healthScale = 40.0
+	}
 }

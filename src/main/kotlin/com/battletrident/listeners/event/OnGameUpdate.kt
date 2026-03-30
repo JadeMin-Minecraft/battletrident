@@ -41,7 +41,7 @@ class OnGameUpdate : Listener {
 	fun onGameUpdate(event: GameUpdateEvent) {
 		val onlinePlayers = playerManager.getAll()
 		
-		for (player in onlinePlayers) {
+		for (player in onlinePlayers.keys) {
 			player.inventory.clear()
 			player.clearActivePotionEffects()
 
@@ -57,10 +57,14 @@ class OnGameUpdate : Listener {
 			commandManager.dispatchCommand(
 				"spreadplayers ${worldSpawn.blockX} ${worldSpawn.blockZ} ${ringRadius / onlinePlayers.size} $ringRadius false @a"
 			)
+			
+			for (player in onlinePlayers) {
+				player.value.isAlive = true
+			}
 		} else {
 			ringManager.reset()
 
-			for (player in onlinePlayers) {
+			for (player in onlinePlayers.keys) {
 				player.resetCooldown()
 				player.teleport(world.spawnLocation)
 				playerManager.giveImmune(player)

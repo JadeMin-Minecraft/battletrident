@@ -11,14 +11,14 @@ class RingManager {
 
 	init {
 		worldBorder.warningDistance = 30
-		worldBorder.warningTime = 0
+		worldBorder.warningTimeTicks = 0
 		worldBorder.damageBuffer = 0.0
 
 		phase = PhaseManager()
 	}
 
 	private fun setRing(ring: Ring) {
-		worldBorder.setSize(ring.size, ring.speed)
+		worldBorder.changeSize(ring.size, ring.speed * 20)
 		worldBorder.damageAmount = ring.damage
 	}
 
@@ -61,7 +61,7 @@ class RingManager {
 	}
 
 	fun reset() {
-		worldBorder.center = world.getSpawnLocation()
+		worldBorder.center = world.spawnLocation
 
 		phase.clearTasks()
 		phase.set(0)

@@ -12,7 +12,7 @@ class OnCinderella : Listener {
 	companion object {
 		val SKILL_ITEM = Material.ENDER_PEARL
 		val SKILL_ENTITY = EntityType.ENDER_PEARL
-		val SKILL_COOLDOWN = 120
+		val SKILL_COOLDOWN = 60 * 20
 		val SKILL_DURATION = 2
 	}
 

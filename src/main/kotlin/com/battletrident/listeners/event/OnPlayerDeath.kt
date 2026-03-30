@@ -6,30 +6,32 @@ import com.battletrident.BattleTrident.Companion.plugin
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.title.Title
+import org.bukkit.Bukkit
 import org.bukkit.GameMode
+import org.bukkit.Sound
 import org.bukkit.event.EventHandler
-import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
+import org.bukkit.event.player.PlayerRespawnEvent
 import org.bukkit.scheduler.BukkitRunnable
 
 class OnPlayerDeath : Listener {
-	@EventHandler(priority = EventPriority.HIGHEST)
-	fun onDeath(event: PlayerDeathEvent) {
-		if (!gameManager.isPlaying) return
+	fun doWhenGameEnds() {
+		val deads = playerManager.getAll().filter {
+			it.value.isAlive == false
+		}.keys
+		val alives = playerManager.getAll().filter {
+			it.value.isAlive == true
+		}.keys
 		
-		val onlinePlayers = playerManager.getAll()
-
-		event.player.gameMode = GameMode.SPECTATOR
-
-		val winner = onlinePlayers.firstOrNull {
-			it.gameMode != GameMode.SPECTATOR
-		} ?: return
-
+		if (alives.isEmpty()) return
+		
+		val winner = alives.first()
+		
 		winner.showTitle(
 			Title.title(
 				Component.text(
-					"YOU ARE THE WINNER!",
+					"YOU WIN!",
 					NamedTextColor.YELLOW
 				),
 				Component.text(
@@ -39,28 +41,26 @@ class OnPlayerDeath : Listener {
 		)
 		winner.playSound(
 			winner,
-			"minecraft:ui.toast.challenge_complete",
+			Sound.UI_TOAST_CHALLENGE_COMPLETE,
 			1.0f, 1.0f
 		)
-
-		for (player in onlinePlayers) {
-			if (player.gameMode != GameMode.SPECTATOR) return
-
+		
+		for (player in deads) {
 			player.showTitle(
 				Title.title(
 					Component.text(
-						"GAME OVER",
-						NamedTextColor.GRAY
+						"GAME OVER!",
+						NamedTextColor.RED
 					),
 					Component.text(
-						"${winner.name}님이 승리하셨습니다",
+						"${winner.name}님이 승리하셨습니다!",
 						NamedTextColor.YELLOW
 					)
 				)
 			)
 		}
-
-		plugin.server.broadcast(
+		
+		Bukkit.broadcast(
 			Component.text(
 				"10초 뒤에 게임이 종료됩니다.",
 				NamedTextColor.YELLOW
@@ -68,12 +68,35 @@ class OnPlayerDeath : Listener {
 		)
 		
 		object : BukkitRunnable() {
-			override fun run() {
-				gameManager.stop()
-			}
+			override fun run() = gameManager.stop()
 		}.runTaskLater(
 			plugin,
-			10 * 20
+			10 * 20L
 		)
+	}
+	
+	@EventHandler
+	fun onDeath(event: PlayerDeathEvent) {
+		if (!gameManager.isPlaying) return
+		
+		val player = event.player
+		
+		player.gameMode = GameMode.SPECTATOR
+		playerManager.get(player)?.isAlive = false
+		
+		doWhenGameEnds()
+	}
+	
+	@EventHandler
+	fun onRespawn(event: PlayerRespawnEvent) {
+		if (!gameManager.isPlaying) return
+		
+		val player = event.player
+		
+		if (playerManager.get(player)?.isAlive == false) {
+			val loc = player.lastDeathLocation ?: return
+			
+			event.respawnLocation = loc
+		}
 	}
 }

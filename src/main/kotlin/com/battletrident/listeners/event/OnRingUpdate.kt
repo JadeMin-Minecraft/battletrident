@@ -66,7 +66,7 @@ class OnRingUpdate : Listener {
 			notifyEnd(ring)
 
 			if (ring.delay < 0) {
-				for (player in playerManager.getAll()) {
+				for (player in playerManager.getAll().keys) {
 					player.addPotionEffect(
 						PotionEffect(
 							PotionEffectType.WITHER,
