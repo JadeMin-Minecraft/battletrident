@@ -1,6 +1,6 @@
-package com.battletrident.listeners.event.skill
+package com.battletrident.skills.bangal
 
-import com.battletrident.BattleTrident.Companion.gameManager
+import com.battletrident.BattleTrident
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -28,7 +28,7 @@ class OnBangal : Listener {
 
 	@EventHandler
 	fun onEntityDamage(event: EntityDamageEvent) {
-		if (!gameManager.isPlaying) return
+		if (!BattleTrident.gameManager.isPlaying) return
 		
 		val player = event.entity as? Player ?: return
 
@@ -38,7 +38,7 @@ class OnBangal : Listener {
 
 	@EventHandler
 	fun onPlayerHealt(event: EntityRegainHealthEvent) {
-		if (!gameManager.isPlaying) return
+		if (!BattleTrident.gameManager.isPlaying) return
 
 		val player = event.entity as? Player ?: return
 

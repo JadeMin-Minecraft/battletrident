@@ -4,26 +4,27 @@ import com.battletrident.BattleTrident.Companion.plugin
 import com.battletrident.guis.adminGUI.settingGUI.SettingGUIListener
 import com.battletrident.listeners.event.*
 import com.battletrident.listeners.event.gui.AdminGUIListener
-import com.battletrident.listeners.event.gui.CinderellaGUIListener
-import com.battletrident.listeners.event.skill.OnBangal
-import com.battletrident.listeners.event.skill.OnCinderella
-import com.battletrident.listeners.event.skill.OnTrident
+import com.battletrident.skills.cinderella.gui.CinderellaGUIListener
+import com.battletrident.skills.bangal.OnBangal
+import com.battletrident.skills.cinderella.OnCinderella
+import com.battletrident.skills.trident.OnTrident
 
 class EventManager {
 	val LISTENERS = listOf(
-		AdminGUIListener(),
-		SettingGUIListener(),
-		CinderellaGUIListener(),
-
 		OnPlayerJoinExit(),
 		OnGameUpdate(),
 		OnRingUpdate(),
 		OnPlayerInteract(),
 		OnPlayerDeath(),
+		
+		AdminGUIListener(),
+		SettingGUIListener(),
 
 		OnTrident(),
 		OnCinderella(),
 		OnBangal(),
+		
+		CinderellaGUIListener(),
 	)
 
 	init {

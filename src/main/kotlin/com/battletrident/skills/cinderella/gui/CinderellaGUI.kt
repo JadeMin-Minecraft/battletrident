@@ -1,7 +1,6 @@
-package com.battletrident.guis.CinderellaGUI
+package com.battletrident.skills.cinderella.gui
 
-import com.battletrident.BattleTrident.Companion.playerManager
-import com.battletrident.BattleTrident.Companion.plugin
+import com.battletrident.BattleTrident
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.GameMode
@@ -15,14 +14,14 @@ import org.bukkit.inventory.meta.SkullMeta
 class CinderellaGUI(opener: Player) : InventoryHolder {
 	private val SIZE = 9
 	private val TITLE = Component.text("비비디 바비디 BOOM💥")
-	private val inv = plugin.server.createInventory(
+	private val inv = BattleTrident.plugin.server.createInventory(
 		this,
 		SIZE,
 		TITLE
 	)
 
 	private var players =
-		playerManager.getAll().keys.filter {
+		BattleTrident.playerManager.getAll().keys.filter {
 			it.gameMode != GameMode.SPECTATOR &&
 				it.uniqueId != opener.uniqueId
 		}
