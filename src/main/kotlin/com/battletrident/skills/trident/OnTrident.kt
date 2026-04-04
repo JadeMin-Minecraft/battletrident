@@ -1,6 +1,7 @@
 package com.battletrident.skills.trident
 
-import com.battletrident.BattleTrident
+import com.battletrident.BattleTrident.Companion.gameManager
+import com.battletrident.BattleTrident.Companion.plugin
 import org.bukkit.Material
 import org.bukkit.Particle
 import org.bukkit.Sound
@@ -21,7 +22,7 @@ class OnTrident : Listener {
 
 	@EventHandler
 	fun onTridentThrow(event: ProjectileLaunchEvent) {
-		if (!BattleTrident.gameManager.isPlaying) return
+		if (!gameManager.isPlaying) return
 
 		val projectile = event.entity
 		val shooter = projectile.shooter as? Player ?: return
@@ -41,13 +42,13 @@ class OnTrident : Listener {
 						)
 					}
 				}
-			}.runTaskTimer(BattleTrident.plugin, 0, 1)
+			}.runTaskTimer(plugin, 0, 1)
 		}
 	}
 
 	@EventHandler
 	fun onTridentHit(event: ProjectileHitEvent) {
-		if (!BattleTrident.gameManager.isPlaying) return
+		if (!gameManager.isPlaying) return
 
 		val projectile = event.entity
 		val shooter = projectile.shooter as? Player ?: return

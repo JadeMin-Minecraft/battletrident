@@ -1,6 +1,7 @@
 package com.battletrident.skills.cinderella.gui
 
-import com.battletrident.BattleTrident
+import com.battletrident.BattleTrident.Companion.gameManager
+import com.battletrident.BattleTrident.Companion.plugin
 import com.battletrident.skills.cinderella.OnCinderella
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
@@ -16,7 +17,7 @@ import org.bukkit.potion.PotionEffectType
 class CinderellaGUIListener : Listener {
 	@EventHandler
 	fun onCinderellaPick(event: InventoryClickEvent) {
-		if (!BattleTrident.gameManager.isPlaying) return
+		if (!gameManager.isPlaying) return
 
 		val clickedItem = event.currentItem ?: return
 		val player = event.whoClicked as Player
@@ -39,7 +40,7 @@ class CinderellaGUIListener : Listener {
 					)
 				)
 				
-				BattleTrident.plugin.server.broadcast(
+				plugin.server.broadcast(
 					Component.text(
 						player.name,
 						NamedTextColor.BLUE

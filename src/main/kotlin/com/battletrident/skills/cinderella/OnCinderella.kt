@@ -1,6 +1,6 @@
 package com.battletrident.skills.cinderella
 
-import com.battletrident.BattleTrident
+import com.battletrident.BattleTrident.Companion.gameManager
 import com.battletrident.skills.cinderella.gui.CinderellaGUI
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
@@ -18,7 +18,7 @@ class OnCinderella : Listener {
 
 	@EventHandler
 	fun onCinderellaOpen(event: PlayerInteractEvent) {
-		if (!BattleTrident.gameManager.isPlaying) return
+		if (!gameManager.isPlaying) return
 
 		val item = event.item ?: return
 		val action = event.action
